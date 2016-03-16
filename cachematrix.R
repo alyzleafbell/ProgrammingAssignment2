@@ -2,16 +2,17 @@
 ## functions do
 ## create a matrix, and cache its inverse
 ## if changed, clear the cached inverse 
-## Write a short comment describing this function
+## found error , i mix the inverse with transposition of matrix
+
 makeCacheMatrix <- function(x = matrix()) {
- t <-NULL
+ inv <-NULL
  set <- function(y){
    x <<- y
-   t <<- NULL
+   inv <<- NULL
  }
  get <- function() x
- setInverse <- function(inverse) t <<- inverse
- getInverse <- funcition() t
+ setInverse <- function(inverse) inv <<- inverse
+ getInverse <- funcition() inv
  list(set = set, get = get, 
       setInverse = setInverse,
       getInverse = getInverse)
@@ -19,18 +20,18 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
-# first getInverse, if null use t() get inverse matrix
+# first getInverse, if null use solve() get inverse matrix
 # and don't forget cache it  
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  t <- x$getInverse();
-  if (!is.null(t)){
+  inv <- x$getInverse();
+  if (!is.null(inv)){
     message("getting cached inverse matrix")
-    return (t)
+    return (inv)
   }
   m <- x$get();
-  t <- t(m,...)
-  x$setInverse(t)
-  t
+  inv <- solve(m,...)
+  x$setInverse(inv)
+  inv
 }
